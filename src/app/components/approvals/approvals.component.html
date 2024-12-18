@@ -1,0 +1,29 @@
+<div class="video-card-list">
+    <mat-card *ngFor="let video of videos" class="card">
+      <!-- Video Title -->
+      <mat-card-header>
+        <mat-card-title>{{ video.title }}</mat-card-title>
+      </mat-card-header>
+  
+      <!-- Video Link -->
+      <mat-card-content>
+        <p><a [href]="video.link" target="_blank">{{ video.link }}</a></p>
+  
+        <!-- Tags List -->
+        <div class="tags">
+          <span *ngFor="let tag of video.tags" class="tag">{{ tag }}</span>
+        </div>
+  
+        <!-- Approve/Deny Buttons -->
+        <div class="action-buttons">
+          <button mat-icon-button color="primary" (click)="approve(video)">
+            <i class="fa-solid fa-check"></i>
+          </button>
+          <button mat-icon-button color="warn" (click)="deny(video)">
+            <i class="fa-solid fa-x"></i>
+          </button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  
