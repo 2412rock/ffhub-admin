@@ -19,12 +19,14 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ApprovalsComponent } from "./components/approvals/approvals.component";
+import { AddThumbnailComponent } from "./components/modals/add-thumbnail/add-thumbnail.component";
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        ApprovalsComponent
+        ApprovalsComponent,
+        AddThumbnailComponent
     ],
     providers: [
         {

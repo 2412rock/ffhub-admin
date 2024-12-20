@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'app-approvals',
@@ -24,9 +25,13 @@ export class ApprovalsComponent {
     }
   ];
 
+  constructor(private modalService: ModalService){
+
+  }
   // Approve the video
   approve(video: any) {
     console.log('Video Approved:', video);
+    this.modalService.openAddVideoModal();
   }
 
   // Deny the video

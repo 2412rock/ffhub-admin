@@ -1,0 +1,10 @@
+<div mat-dialog-content class="modal-content">
+    <mat-form-field class="full-width">
+      <mat-label>Enter Link</mat-label>
+      <input matInput [(ngModel)]="link" placeholder="https://example.com" />
+    </mat-form-field>
+    <div class="modal-actions">
+      <button mat-button mat-dialog-close>Cancel</button>
+      <button mat-raised-button color="primary" (click)="saveLink()">Save</button>
+    </div>
+  </div>
