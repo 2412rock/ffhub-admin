@@ -10,6 +10,7 @@ import { firstValueFrom } from 'rxjs';
 })
 export class ApprovalsComponent implements OnInit {
   videos: VideoAndTags[];
+  videoIdToDelete: string;
 
   constructor(private modalService: ModalService, private dataService: DataService) {
 
@@ -46,6 +47,16 @@ export class ApprovalsComponent implements OnInit {
     let result = await firstValueFrom(this.dataService.reviewSuggestion(req));
     if (result.isSuccess) {
       this.videos = this.videos.filter(e => e.videoId != video.videoId);
+    }
+  }
+
+  async deleteVideo(){
+    let result = await firstValueFrom(this.dataService.deleteVideo(this.videoIdToDelete));
+    if (result.isSuccess) {
+      this.modalService.openNotifactionModal(true, "Video deleted");
+    }
+    else{
+      this.modalService.openNotifactionModal(false, "Error " + result.exceptionMessage);
     }
   }
 }

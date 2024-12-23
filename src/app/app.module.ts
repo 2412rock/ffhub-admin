@@ -20,13 +20,15 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ApprovalsComponent } from "./components/approvals/approvals.component";
 import { AddThumbnailComponent } from "./components/modals/add-thumbnail/add-thumbnail.component";
+import { NotificationModalComponent } from "./components/modals/notificationmodal/notificationmodal.component";
 
 
 @NgModule({
     declarations: [
         AppComponent,
         ApprovalsComponent,
-        AddThumbnailComponent
+        AddThumbnailComponent,
+        NotificationModalComponent
     ],
     providers: [
         {

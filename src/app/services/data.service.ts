@@ -13,7 +13,10 @@ export class DataService {
   
   getVideos(): Observable<Maybe<VideoAndTags[]>>{
     return this.http.get<Maybe<VideoAndTags[]>>(`${this.urlService.getHttpBaseUrl()}/api/videosuggestions`);
+  }
 
+  deleteVideo(id: string): Observable<Maybe<string>>{
+    return this.http.delete<Maybe<string>>(`${this.urlService.getHttpBaseUrl()}/api/delete?id=${id}`);
   }
 
   reviewSuggestion(req: ReviewSuggestion){

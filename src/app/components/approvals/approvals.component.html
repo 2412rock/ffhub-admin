@@ -1,3 +1,11 @@
+<div class="input-container">
+  <mat-form-field appearance="outline" class="input-field">
+    <mat-label>Video id</mat-label>
+    <input matInput [(ngModel)]="videoIdToDelete"/>
+  </mat-form-field>
+  <button mat-raised-button (click)="deleteVideo()" color="primary" class="input-button" style="margin-left: 1em;">Delete</button>
+</div>
+
 <div class="video-card-list">
     <mat-card *ngFor="let video of videos" class="card">
       <!-- Video Title -->
