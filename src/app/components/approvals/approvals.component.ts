@@ -1,41 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ModalService } from '../../services/modal.service';
+import { DataService, ReviewSuggestion, VideoAndTags } from '../../services/data.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-approvals',
   templateUrl: './approvals.component.html',
   styleUrl: './approvals.component.scss'
 })
-export class ApprovalsComponent {
-  videos = [
-    {
-      title: 'Video 1',
-      link: 'https://www.example.com/video1',
-      tags: ['tag1', 'tag2', 'tag3']
-    },
-    {
-      title: 'Video 2',
-      link: 'https://www.example.com/video2',
-      tags: ['tag2', 'tag3', 'tag4']
-    },
-    {
-      title: 'Video 3',
-      link: 'https://www.example.com/video3',
-      tags: ['tag1', 'tag4', 'tag5']
+export class ApprovalsComponent implements OnInit {
+  videos: VideoAndTags[];
+
+  constructor(private modalService: ModalService, private dataService: DataService) {
+
+  }
+  async ngOnInit() {
+    let response = await firstValueFrom(this.dataService.getVideos());
+    if (response.isSuccess) {
+      this.videos = response.data;
     }
-  ];
-
-  constructor(private modalService: ModalService){
-
   }
   // Approve the video
   approve(video: any) {
     console.log('Video Approved:', video);
-    this.modalService.openAddVideoModal();
+    let modalRef = this.modalService.openAddVideoModal();
+    modalRef.afterClosed().subscribe(async thumbnail => {
+      let req = new ReviewSuggestion();
+      req.pass = true;
+      req.videoId = video.videoId;
+      req.thumbnail = thumbnail;
+      let result = await firstValueFrom(this.dataService.reviewSuggestion(req));
+      if (result.isSuccess) {
+        this.videos = this.videos.filter(e => e.videoId != video.videoId);
+      }
+    })
+
   }
 
   // Deny the video
-  deny(video: any) {
+  async deny(video: VideoAndTags) {
     console.log('Video Denied:', video);
+    let req = new ReviewSuggestion();
+    req.pass = false;
+    req.videoId = video.videoId;
+    let result = await firstValueFrom(this.dataService.reviewSuggestion(req));
+    if (result.isSuccess) {
+      this.videos = this.videos.filter(e => e.videoId != video.videoId);
+    }
   }
 }

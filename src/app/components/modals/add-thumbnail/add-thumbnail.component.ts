@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-thumbnail',
@@ -9,10 +9,10 @@ import { MatDialog } from '@angular/material/dialog';
 export class AddThumbnailComponent {
   link: string = '';
   
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialogRef: MatDialogRef<AddThumbnailComponent>) {}
   
   saveLink(): void {
     console.log('Link saved:', this.link);
-    this.dialog.closeAll();
+    this.dialogRef.close(this.link);
   }
 }
