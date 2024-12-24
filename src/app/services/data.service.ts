@@ -19,9 +19,26 @@ export class DataService {
     return this.http.delete<Maybe<string>>(`${this.urlService.getHttpBaseUrl()}/api/delete?id=${id}`);
   }
 
+  deleteTag(videoId: string, tag: string): Observable<Maybe<string>>{
+    return this.http.delete<Maybe<string>>(`${this.urlService.getHttpBaseUrl()}/api/deletetag?videoId=${videoId}&tag=${tag}`);
+  }
+
   reviewSuggestion(req: ReviewSuggestion){
     return this.http.post<Maybe<string>>(`${this.urlService.getHttpBaseUrl()}/api/reviewSuggestion`, req);
   }
+
+  addTagsToVideo(req: AddTagsToVideoReq){
+    return this.http.post<Maybe<string>>(`${this.urlService.getHttpBaseUrl()}/api/addTags`, req);
+  }
+
+  getVideo(id: number): Observable<Maybe<VideoAndTags>>{
+    return this.http.get<Maybe<VideoAndTags>>(`${this.urlService.getHttpBaseUrl()}/api/video?id=${id}`);
+  }
+
+  getTags(startsWith: string){
+    return this.http.get<Maybe<Tag[]>>(`${this.urlService.getHttpBaseUrl()}/api/tags?query=${startsWith}`);
+  }
+
 }
 
 export class ReviewSuggestion{
@@ -35,5 +52,15 @@ export class VideoAndTags {
   public title: string;
   public link: string;
   public thumbNail: string;
+  public tags: string[];
+}
+
+export class Tag{
+  public tagName: string;
+  public tagId: number;
+}
+
+export class AddTagsToVideoReq{
+  public videoId: number;
   public tags: string[];
 }

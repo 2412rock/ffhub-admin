@@ -1,0 +1,30 @@
+<!-- Single Video Page -->
+<div class="video-page">
+    <div *ngIf="!show404">
+        <div
+            style="height: fit-content; width: fit-content; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+            <span style="font-size: large; margin-top: 2em; margin-bottom: 1em;">{{title}}</span>
+            <div class="video-container">
+                <div class="video-thumbnail-container">
+                    <img mat-card-image [src]="thumbnail" alt="Video thumbnail" class="video-thumbnail" />
+                    <button mat-icon-button class="play-button" (click)="playVideo()">
+                        <mat-icon>play_arrow</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <span style="margin-top: 1em; margin-bottom: 0.5em;">Video tags</span>
+            <mat-chip-set class="chip-set">
+                <mat-chip-row *ngFor="let chip of videoTags" (removed)="removeVideoFromSelected(chip)">
+                    {{ chip }}
+                    <mat-icon matChipRemove><i class="fa-solid fa-x"></i></mat-icon>
+                </mat-chip-row>
+                <mat-chip-row (removed)="addTags()">
+                    <mat-icon matChipRemove><i class="fa-solid fa-plus"></i></mat-icon>
+                </mat-chip-row>
+            </mat-chip-set>
+        </div>
+    </div>
+    <div *ngIf="show404">
+        <h1>404 Video not found</h1>
+    </div>
+</div>

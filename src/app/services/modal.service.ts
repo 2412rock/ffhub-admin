@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { AddThumbnailComponent } from '../components/modals/add-thumbnail/add-thumbnail.component';
 import { NotificationModalComponent } from '../components/modals/notificationmodal/notificationmodal.component';
+import { AddTagComponent } from '../components/modals/add-tag/add-tag.component';
 
 
 @Injectable({
@@ -15,6 +16,15 @@ export class ModalService {
     return this.dialog.open(AddThumbnailComponent, {
       data: {
         title: ""
+      },
+      panelClass: 'custom-dialog-surface'
+    });
+  }
+
+  openAddTagsModal(videoId: number): MatDialogRef<AddTagComponent> {
+    return this.dialog.open(AddTagComponent, {
+      data: {
+        videoId
       },
       panelClass: 'custom-dialog-surface'
     });

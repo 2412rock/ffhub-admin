@@ -21,6 +21,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ApprovalsComponent } from "./components/approvals/approvals.component";
 import { AddThumbnailComponent } from "./components/modals/add-thumbnail/add-thumbnail.component";
 import { NotificationModalComponent } from "./components/modals/notificationmodal/notificationmodal.component";
+import { VideoComponent } from "./components/video/video.component";
+import { AddTagComponent } from "./components/modals/add-tag/add-tag.component";
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { NotificationModalComponent } from "./components/modals/notificationmoda
         AppComponent,
         ApprovalsComponent,
         AddThumbnailComponent,
-        NotificationModalComponent
+        NotificationModalComponent,
+        VideoComponent,
+        AddTagComponent
     ],
     providers: [
         {
