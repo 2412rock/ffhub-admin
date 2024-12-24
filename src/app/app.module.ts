@@ -23,7 +23,7 @@ import { AddThumbnailComponent } from "./components/modals/add-thumbnail/add-thu
 import { NotificationModalComponent } from "./components/modals/notificationmodal/notificationmodal.component";
 import { VideoComponent } from "./components/video/video.component";
 import { AddTagComponent } from "./components/modals/add-tag/add-tag.component";
-
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
     declarations: [
@@ -67,7 +67,8 @@ import { AddTagComponent } from "./components/modals/add-tag/add-tag.component";
         MatAutocompleteModule,
         MatChipsModule,
         MatProgressSpinnerModule,
-        MatDialogModule
+        MatDialogModule,
+        MatListModule
 
     ]
 })

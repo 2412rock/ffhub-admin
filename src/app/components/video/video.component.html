@@ -23,6 +23,14 @@
                 </mat-chip-row>
             </mat-chip-set>
         </div>
+        <div>
+            <h3 mat-subheader>Comments</h3>
+            <div *ngFor="let comment of comments"
+              style="border: grey solid 1px; margin-bottom: 1em; max-width: 45vw; padding: 1em;">
+              <i class="fa-solid fa-x" style="color: red; margin-bottom: 1em; cursor:pointer" (click)="deleteComment(comment)"></i>
+              <div mat-line tyle="white-space: normal; word-wrap: break-word;">{{ comment.commentText }}</div>
+            </div>
+          </div>
     </div>
     <div *ngIf="show404">
         <h1>404 Video not found</h1>
