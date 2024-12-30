@@ -16,18 +16,20 @@ export class DataService {
   }
 
   deleteVideo(id: string): Observable<Maybe<string>>{
-    return this.http.delete<Maybe<string>>(`${this.urlService.getHttpBaseUrl()}/api/delete?id=${id}`);
+    return this.http.delete<Maybe<string>>(`${this.urlService.getHttpBaseUrl()}/api/delete?id=${id}&adminPass=${localStorage.getItem('admin_pass')}`);
   }
 
   deleteTag(videoId: string, tag: string): Observable<Maybe<string>>{
-    return this.http.delete<Maybe<string>>(`${this.urlService.getHttpBaseUrl()}/api/deletetag?videoId=${videoId}&tag=${tag}`);
+    return this.http.delete<Maybe<string>>(`${this.urlService.getHttpBaseUrl()}/api/deletetag?videoId=${videoId}&tag=${tag}&adminPass=${localStorage.getItem('admin_pass')}`);
   }
 
   reviewSuggestion(req: ReviewSuggestion){
+    req.adminPass = localStorage.getItem('admin_pass') as string;
     return this.http.post<Maybe<string>>(`${this.urlService.getHttpBaseUrl()}/api/reviewSuggestion`, req);
   }
 
   addTagsToVideo(req: AddTagsToVideoReq){
+    req.adminPass = localStorage.getItem('admin_pass') as string;
     return this.http.post<Maybe<string>>(`${this.urlService.getHttpBaseUrl()}/api/addTags`, req);
   }
 
@@ -45,6 +47,7 @@ export class ReviewSuggestion{
   public pass: boolean;
   public videoId: number;
   public thumbnail: string;
+  public adminPass: string;
 }
 
 export class VideoAndTags {
@@ -63,4 +66,5 @@ export class Tag{
 export class AddTagsToVideoReq{
   public videoId: number;
   public tags: string[];
+  public adminPass: string;
 }

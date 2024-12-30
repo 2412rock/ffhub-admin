@@ -20,7 +20,7 @@ export class CommentService {
   }
 
   deleteComment(videoId: number, commentId: number): Observable<Maybe<Comment[]>>{
-    return this.http.delete<Maybe<Comment[]>>(`${this.urlService.getHttpBaseUrl()}/api/deletecomment?videoId=${videoId}&commentId=${commentId}`);
+    return this.http.delete<Maybe<Comment[]>>(`${this.urlService.getHttpBaseUrl()}/api/deletecomment?videoId=${videoId}&commentId=${commentId}&adminPass=${localStorage.getItem('admin_pass')}`);
   }
 }
 
