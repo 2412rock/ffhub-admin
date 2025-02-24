@@ -8,7 +8,7 @@ export class UrlService {
   private devMode = isDevMode();
     //private apiUrl = 'http://192.168.1.134:4200'
     //private sockerService = "ws://192.168.1.134:4200/ws/"
-     private apiUrl = 'http://34.159.20.66:4500';
+     private apiUrl = 'http://ffhub.co:4500';
 
   constructor() { }
 
